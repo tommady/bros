@@ -18,7 +18,6 @@ enum Opt {
 }
 
 fn my_bro(name: String, zshrc_path: Option<String>) {
-    println!("{}", name);
     let dir = String::from(home_dir().unwrap().to_str().unwrap());
     let default_zshrc_path = format!("{}/.zshrc", dir);
     let zshrc = match zshrc_path {
@@ -33,6 +32,7 @@ fn my_bro(name: String, zshrc_path: Option<String>) {
     data = "typeset -g POWERLEVEL9K_DIR_CLASSES=('*' DEFAULT ' ❤ '${BRO}' ❤ ')\n".to_string();
     file.write(data.as_bytes())
         .expect("write file POWERLEVEL failed");
+    file.flush().expect("file flush failed");
 }
 
 fn main() {
